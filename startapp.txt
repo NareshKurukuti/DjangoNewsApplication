@@ -1,0 +1,67 @@
+Steps to Create app
+
+python manage.py startapp app_name
+
+add AppName in settings.py in your project and also url in urls.py in your project
+
+create urls.py in your application
+
+write whatever you want in models.py
+
+python manage.py makemigrations
+
+python manage.py migrate
+
+-- Active Virtual Env in windows --
+virtualEnvName\Scripts\activate
+
+-- PIP package install --
+pip install django-ipware
+
+pip install ip2geotools
+
+-- Remove Fake Migrations --
+python manage.py migrate --fake
+
+
+-- PIP package install Cron Tab --
+pip install django-crontab
+
+-- PIP package install QR code --
+pip install django_qr_code
+
+-- Recovery PIP packages --
+python -m ensurepip
+
+
+-- Collect Static --
+python manage.py collectstatic
+
+-- Clear Static Collection --
+python manage.py collectstatic --noinput --clear
+
+-- Django admin version --
+django-admin.py version
+
+-- For Listed Packages --
+pip freeze
+
+-- To List Out All Packages --
+pip freeze requirements.txt
+pip freeze > requirements.txt
+
+-- To Install packages from requirements.tx --
+pip install -r requirements.txt
+
+-- Pyton SOAP client (zeep package install) --
+pip install zeep
+
+
+-- Requests Package Install --
+pip install requests
+
+-- Beautiful SOUP4 --
+pip install beautifulsoup4
+
+-- Django Rest Framework --
+pip install djangorestframework

@@ -1,0 +1,66 @@
+{% extends 'front/master.html'%} {% block headblock %}
+<title>{{sitename}} | All </title>
+{% endblock %} {% load static %} {% block mainblock %}
+
+
+<!-- Latest -->
+<section class="bg0 p-t-60 p-b-40">
+  <div class="container">
+    <div class="how2 how2-cl4 flex-s-c">
+      <h3 class="f1-m-2 cl3 tab01-title">All News about {{catname}}</h3>
+    </div>
+
+    <div class="row p-t-35">
+      {% for i in allnews %}
+      <div class="col-sm-6 col-md-4">
+        <!-- Item latest -->
+        <div class="m-b-45">
+          <a href="{% url 'news_detail' word=i.name %}" class="wrap-pic-w hov1 trans-03">
+            <img src="{{i.picurl}}" style="display: inline-block; width: 350px;height: 240px;" alt="IMG" />
+          </a>
+
+          <div class="p-t-16">
+            <h5 class="p-b-5">
+              <a
+                href="{% url 'news_detail' word=i.name %}"
+                class="f1-m-3 cl2 hov-cl10 trans-03"
+              >
+                {{i.name}}
+              </a>
+            </h5>
+            <p>{{i.short_text|safe}}</p>
+
+            <span class="cl8">
+              <a href="#" class="f1-s-4 cl8 hov-cl10 trans-03">
+                by {{i.writer}}
+              </a>
+
+              <span class="f1-s-3 m-rl-3"> - </span>
+
+              <span class="f1-s-3"> {{ i.date }} {{ i.time }} </span>
+            </span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    Page {{allnews.number}} From {{allnews.paginator.num_pages}}
+    <br />
+    <br />
+    {% if allnews.has_previous %}
+        <a href="?page={{allnews.previous_page_number}}" data-toggle="tooltip" title="Previous" class="btn btn-xs btn-default"> Previous </a>
+    {% endif %}
+    {% for i in allnews.paginator.page_range %}
+        {% if allnews.number == i %}
+            <a href="#" onclick="return false;" data-toggle="tooltip" title="{{Disables}}" class="btn btn-xs btn-default"> {{i}} </a>
+        {% else %}
+            <a href="?page={{i}}" data-toggle="tooltip" title="{{i}}" class="btn btn-xs btn-default"> {{i}} </a>    
+        {% endif %}
+    {% endfor %}
+    {% if allnews.has_next %}
+        |<a href="?page={{allnews.next_page_number}}" data-toggle="tooltip" title="Next" class="btn btn-xs btn-default"> Next </a>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}
