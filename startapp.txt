@@ -1,3 +1,18 @@
+-- Set the Environment Variable in Windows --
+https://www.youtube.com/watch?v=4V14G5_CNGg
+
+-- Create Virtual Env --
+https://docs.djangoproject.com/en/3.1/howto/windows/
+https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/
+python3 -m venv virtaul_env_name
+py -m venv env
+
+-- Install Django --
+pip install django
+
+-- Install MySQL --
+pip install mysqlclient
+
 Steps to Create app
 
 python manage.py startapp app_name
