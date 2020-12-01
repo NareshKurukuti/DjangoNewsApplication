@@ -7,7 +7,7 @@
 <div class="content-header">
     <div class="header-section">
         <h1>
-            <i class="fa fa-table"></i>Permissions List<br><small>You can add, edit and delete your data</small>
+            <i class="fa fa-table"></i>Permissions List<br><small>You can add and delete your Permissions</small>
         </h1>
     </div>
 </div>
@@ -74,6 +74,22 @@
                 {% endfor %}
             </tbody>
         </table>
+        Page {{perms.number}} From {{perms.paginator.num_pages}}
+        <br />
+        <br />
+        {% if perms.has_previous %}
+            <a href="?page={{perms.previous_page_number}}" data-toggle="tooltip" title="Previous" class="btn btn-xs btn-default"> Previous </a>
+        {% endif %}
+        {% for i in perms.paginator.page_range %}
+            {% if perms.number == i %}
+                <a href="#" onclick="return false;" data-toggle="tooltip" title="{{Disables}}" class="btn btn-xs btn-default"> {{i}} </a>
+            {% else %}
+                <a href="?page={{i}}" data-toggle="tooltip" title="{{i}}" class="btn btn-xs btn-default"> {{i}} </a>    
+            {% endif %}
+        {% endfor %}
+        {% if perms.has_next %}
+            <a href="?page={{perms.next_page_number}}" data-toggle="tooltip" title="Next" class="btn btn-xs btn-default"> Next </a>
+        {% endif %}
     </div>
 </div>
 <!-- END Datatables Content -->

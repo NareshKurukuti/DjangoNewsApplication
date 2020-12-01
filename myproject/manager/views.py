@@ -12,6 +12,7 @@ from django.contrib.auth.models import User
 import re
 from django.contrib.auth.models import User, Group, Permission
 from django.contrib.contenttypes.models import ContentType
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 
@@ -213,8 +214,20 @@ def manager_perms(request):
     if perm == 0 :
         error = "Access Denied.."
         return render(request, 'back/error.html', {'error': error})
+    elif perm == 1:
+        perms = Permission.objects.all().exclude(name="masteruser").order_by('-pk')
 
-    perms = Permission.objects.all().exclude(name="masteruser").order_by('-pk')
+        paginator = Paginator(perms, 10)
+        page = request.GET.get('page')
+
+        try:
+            perms = paginator.page(page)
+
+        except EmptyPage:
+            perms = paginator.page(paginator.num_page)
+        
+        except PageNotAnInteger:
+            perms = paginator.page(1)
 
     return render(request, 'back/manager_perms.html', {'perms': perms})
 

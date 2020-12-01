@@ -94,9 +94,9 @@ def news_add(request):
     minute = now.minute
 
     if len(str(month)) == 1:
-        month = "0"+month
+        month = "0"+str(month)
     if len(str(day)) == 1:
-        day = "0"+day
+        day = "0"+ str(day)
 
     today = str(year)+'/'+str(month)+'/'+str(day)
     time = str(hour)+':'+str(minute)

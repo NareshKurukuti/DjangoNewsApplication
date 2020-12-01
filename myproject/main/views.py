@@ -191,14 +191,18 @@ def panel(request):
     count = News.objects.count()
     rand = News.objects.all()[random.randinit(0, count - 1)]
     """
+    newsCount = News.objects.all().count()
+    managerCount = Manager.objects.all().count()
+    trendingCount = Trending.objects.all().count()
+    contactsCount = ContactForm.objects.all().count()
 
-    return render(request, 'back/home.html')
+    return render(request, 'back/home.html', {'newsCount' : newsCount, 'managerCount': managerCount, 'trendingCount': trendingCount, 'contactsCount' : contactsCount})
 
 
 def mylogin(request):
 
-    # if request.user.is_authenticated :
-    #     return redirect('panel')
+    if request.user.is_authenticated :
+        return redirect('panel')
 
     if request.method == "POST":
         utxt = request.POST.get("username")
